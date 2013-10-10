@@ -957,6 +957,12 @@
 
                     if (angular.isObject(queryParams)) {
                         params = angular.extend(params || {}, queryParams);
+                        newParams = {}
+                        _this = this
+                        angular.forEach(queryParams, function(v,k){
+                          newParams[_this.serializer.options.underscore(k)] = v
+                        });
+                        params = angular.extend(params || {}, newParams);
                     }
 
                     return params;
